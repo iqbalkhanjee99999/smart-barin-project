@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.particals{
+  z-index: -1;
+  position: fixed;
+  width: 100%;
+}
