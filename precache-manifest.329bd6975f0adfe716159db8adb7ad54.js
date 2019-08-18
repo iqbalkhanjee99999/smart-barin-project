@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "226ac565bf8b88e6712f92d3a7e05897",
+    "revision": "65ca20adf0ec8df77b44e9f954c01f10",
     "url": "/smart-barin-project/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/smart-barin-project/static/css/2.31dafeb2.chunk.css"
   },
   {
-    "revision": "b0f301aadd17571ef9dc",
+    "revision": "4dcc0f9f05fa00090b92",
     "url": "/smart-barin-project/static/css/main.703cea33.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/smart-barin-project/static/js/2.15361e12.chunk.js"
   },
   {
-    "revision": "b0f301aadd17571ef9dc",
-    "url": "/smart-barin-project/static/js/main.bd450be6.chunk.js"
+    "revision": "4dcc0f9f05fa00090b92",
+    "url": "/smart-barin-project/static/js/main.938adde1.chunk.js"
   },
   {
     "revision": "5099414bd3118c7e0ff5",
