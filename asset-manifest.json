@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/smart-barin-project/static/css/main.703cea33.chunk.css",
+    "main.js": "/smart-barin-project/static/js/main.bd450be6.chunk.js",
+    "main.js.map": "/smart-barin-project/static/js/main.bd450be6.chunk.js.map",
+    "runtime~main.js": "/smart-barin-project/static/js/runtime~main.21db1787.js",
+    "runtime~main.js.map": "/smart-barin-project/static/js/runtime~main.21db1787.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/smart-barin-project/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.15361e12.chunk.js": "/smart-barin-project/static/js/2.15361e12.chunk.js",
+    "static/js/2.15361e12.chunk.js.map": "/smart-barin-project/static/js/2.15361e12.chunk.js.map",
+    "index.html": "/smart-barin-project/index.html",
+    "precache-manifest.c0ea8586a505fabd1685c94d2302a7e2.js": "/smart-barin-project/precache-manifest.c0ea8586a505fabd1685c94d2302a7e2.js",
+    "service-worker.js": "/smart-barin-project/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/smart-barin-project/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.703cea33.chunk.css.map": "/smart-barin-project/static/css/main.703cea33.chunk.css.map"
+  }
+}
