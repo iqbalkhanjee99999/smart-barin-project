@@ -7,7 +7,10 @@ const FaceRegonition = ({ image,boxes,error }) =>{
 
 	if(boxes && boxes.length > 0){
 		 faceBoxes = boxes.map(box => {
-			return <div className='bounding-box' style={{top: box.topRow, bottom: box.bottomRow,'left': box.leftCol,right: box.rightCol}}></div>
+			return(
+				 <div className='bounding-box' style={{top: box.topRow , bottom: box.bottomRow ,left: box.leftCol - 10,right: box.rightCol - 10,}}>
+				</div>
+			)
 		})
 	}
 
