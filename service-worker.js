@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/smart-barin-project/precache-manifest.b4603dfdbb38933bca99113065b8650b.js"
+  "/smart-barin-project/precache-manifest.9fa927c9d15103557f942a29c7b3933e.js"
 );
 
 self.addEventListener('message', (event) => {
