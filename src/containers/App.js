@@ -37,9 +37,18 @@ class App extends Component {
       box:{},
       error:'',
       route: 'signIn',
-      isSignedIn: false
+      isSignedIn: false,
+      user:{
+        id: 0,
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
+
+
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions.map(face => {
@@ -71,7 +80,20 @@ class App extends Component {
     this.setState({error: ''})
     this.setState({imageUrl:this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(response => this.detectFace(this.calculateFaceLocation(response)))
+      .then(response => {
+        if(response){
+
+          fetch('http://127.0.0.1:4000/image/'+this.state.user.id,{
+            method:'put',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+              id:this.state.user.id
+            })
+          }).then(response => response.json())
+          .then(count => this.setState(Object.assign(this.state.user,{entries:count})))
+        }
+        this.detectFace(this.calculateFaceLocation(response))
+      })
       .catch(err => this.setState({error: 'Face Not Detected! '}))
   }
 
@@ -88,7 +110,18 @@ class App extends Component {
     this.setState({route: route});
   }
 
+  loadUser = (data) => {
+    this.setState({user:{
+      id:data.id,
+      name:data.name,
+      email:data.email,
+      entries:data.entries,
+      joined:data.joined,
+    }});
+  }
+
   render(){
+
 
     const { imageUrl, box, error, route, isSignedIn} = this.state;
     return (
@@ -98,15 +131,15 @@ class App extends Component {
         { route === 'home' ? 
           <div>
             <Logo />
-            <Rank />
+            <Rank name={this.state.user.name} entries={this.state.user.entries}/>
             <SearchField inputChange={ this.onInputChange } buttonSubmit={ this.onButtonSubmit }/>
             <FaceRegonition image={ imageUrl } boxes={ box } error={ error }/>
           </div>
           : 
           (this.state.route === 'register' ? 
-            <Register changeRoute={ this.changeRoute }/>
+            <Register changeRoute={ this.changeRoute } loadUser={this.loadUser}/>
           :
-            <SignIn changeRoute={ this.changeRoute } changeRoute={ this.changeRoute}/>
+            <SignIn changeRoute={ this.changeRoute } loadUser={this.loadUser}/>
           )
         } 
       </div>
