@@ -1,13 +1,13 @@
  .bounding-box {
     position: absolute;
-    /*box-shadow: 0 0 0 3px #149df2 inset;*/
+    box-shadow: 0 0 0 3px #149df2 inset;
 
-    background-image: url("./emoji.png");
-    background-size: contain;                    /* <------ */
+   /* background-image: url("./emoji.png");
+    background-size: contain;                    
     background-repeat:   no-repeat;
     background-position: center center;  
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    cursor: pointer;
+    cursor: pointer;*/
 }

@@ -15,23 +15,7 @@ const app = new Clarifai.App({
  apiKey: '2a150ff9325f4fe6934be520ad8594a9'
 });
 
-const particalsOptions = {
-  particles: {
-    number:{
-      value:100,
-      density:{
-        enable:true,
-        value_area:800,
-      }
-    }
-  }
-}
-
-class App extends Component {
-
-  constructor() {
-    super();
-    this.state ={
+ const initialState = {
       input: '',
       imageUrl: '',
       box:{},
@@ -46,7 +30,28 @@ class App extends Component {
         joined: ''
       }
     }
+
+
+const particalsOptions = {
+  particles: {
+    number:{
+      value:100,
+      density:{
+        enable:true,
+        value_area:800,
+      }
+    }
   }
+}
+
+
+class App extends Component {
+
+  constructor() {
+    super();
+    this.state =initialState;
+  }
+
 
 
 
@@ -90,7 +95,9 @@ class App extends Component {
               id:this.state.user.id
             })
           }).then(response => response.json())
+          .catch(console.log)
           .then(count => this.setState(Object.assign(this.state.user,{entries:count})))
+          .catch(console.log)
         }
         this.detectFace(this.calculateFaceLocation(response))
       })
@@ -105,7 +112,7 @@ class App extends Component {
     if(route === 'home'){
       this.setState({isSignedIn: true})
     }else{
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     }
     this.setState({route: route});
   }

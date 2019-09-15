@@ -37,8 +37,8 @@ class Register extends React.Component {
 		})
 		.then(response => response.json())
 		.then(user => {
-			if(user.name === '' || user.email === '' || user.password === ''){
-				this.setState({error: 'Please fill all input fields'})
+			if(!user.id){
+				this.setState({error: user})
 			}else{
 				this.props.loadUser(user)
 				this.props.changeRoute('home')
