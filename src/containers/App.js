@@ -46,10 +46,8 @@ class App extends Component {
     this.state =initialState;
   }
 
-
-
-
   calculateFaceLocation = (data) => {
+    console.log(data.outputs[0].data.regions)
     const clarifaiFace = data.outputs[0].data.regions.map(face => {
       return face.region_info.bounding_box;
     })
@@ -58,12 +56,13 @@ class App extends Component {
     const width = Number(image.width);
     const height = Number(image.height);
 
-    const faces = clarifaiFace.map(face => {
+    const faces = clarifaiFace.map((face,i) => {
          return {
             topRow: face.top_row * height,
             leftCol : face.left_col * width,
             rightCol: width - (face.right_col * width),
             bottomRow: height - (face.bottom_row * height),
+            key: i
           }
       })
 
@@ -78,20 +77,28 @@ class App extends Component {
   onButtonSubmit = () => {
     this.setState({error: ''})
     this.setState({imageUrl:this.state.input});
-    fetch('http://127.0.0')
+      fetch('https://gentle-hollows-68427.herokuapp.com/handleAPICall',{
+            method:'post',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+              input: this.state.input
+            })
+          })
+      .then(response => response.json())
       .then(response => {
         if(response){
-          fetch('http://127.0.0.1:4000/image/'+this.state.user.id,{
+          fetch('https://gentle-hollows-68427.herokuapp.com/image/'+this.state.user.id,{
             method:'put',
             headers:{'Content-type':'application/json'},
             body:JSON.stringify({
               id:this.state.user.id
             })
-          }).then(response => response.json())
-          .catch(console.log)
+          })
+          .then(response => response.json())
           .then(count => this.setState(Object.assign(this.state.user,{entries:count})))
           .catch(console.log)
         }
+
         this.detectFace(this.calculateFaceLocation(response))
       })
       .catch(err => this.setState({error: 'Face Not Detected! '}))
