@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/smart-barin-project/static/css/main.23d7d0f9.chunk.css",
-    "main.js": "/smart-barin-project/static/js/main.6862995a.chunk.js",
-    "main.js.map": "/smart-barin-project/static/js/main.6862995a.chunk.js.map",
+    "main.css": "/smart-barin-project/static/css/main.d483580d.chunk.css",
+    "main.js": "/smart-barin-project/static/js/main.e232dc23.chunk.js",
+    "main.js.map": "/smart-barin-project/static/js/main.e232dc23.chunk.js.map",
     "runtime~main.js": "/smart-barin-project/static/js/runtime~main.21db1787.js",
     "runtime~main.js.map": "/smart-barin-project/static/js/runtime~main.21db1787.js.map",
     "static/css/2.31dafeb2.chunk.css": "/smart-barin-project/static/css/2.31dafeb2.chunk.css",
-    "static/js/2.3c328e0c.chunk.js": "/smart-barin-project/static/js/2.3c328e0c.chunk.js",
-    "static/js/2.3c328e0c.chunk.js.map": "/smart-barin-project/static/js/2.3c328e0c.chunk.js.map",
+    "static/js/2.ba2cf28f.chunk.js": "/smart-barin-project/static/js/2.ba2cf28f.chunk.js",
+    "static/js/2.ba2cf28f.chunk.js.map": "/smart-barin-project/static/js/2.ba2cf28f.chunk.js.map",
     "index.html": "/smart-barin-project/index.html",
-    "precache-manifest.9fa927c9d15103557f942a29c7b3933e.js": "/smart-barin-project/precache-manifest.9fa927c9d15103557f942a29c7b3933e.js",
+    "precache-manifest.2100f4f744a8b2980d8549a4ddac699a.js": "/smart-barin-project/precache-manifest.2100f4f744a8b2980d8549a4ddac699a.js",
     "service-worker.js": "/smart-barin-project/service-worker.js",
     "static/css/2.31dafeb2.chunk.css.map": "/smart-barin-project/static/css/2.31dafeb2.chunk.css.map",
-    "static/css/main.23d7d0f9.chunk.css.map": "/smart-barin-project/static/css/main.23d7d0f9.chunk.css.map",
-    "static/media/FaceRecognition.css": "/smart-barin-project/static/media/emoji.be8d00e0.png"
+    "static/css/main.d483580d.chunk.css.map": "/smart-barin-project/static/css/main.d483580d.chunk.css.map"
   }
 }
