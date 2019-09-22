@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Clarifai from 'clarifai';
 import Particles from 'react-particles-js';
-
 import Navbar from './../components/Navbar/Navbar';
 import Logo from './../components/Logo/Logo';
 import Rank from './../components/Rank/Rank';
@@ -11,27 +9,7 @@ import SignIn from './../components/SignIn/SignIn';
 import Register from './../components/Register/Register';
 import './App.css';
 
-const app = new Clarifai.App({
- apiKey: '2a150ff9325f4fe6934be520ad8594a9'
-});
-
-const particalsOptions = {
-  particles: {
-    number:{
-      value:100,
-      density:{
-        enable:true,
-        value_area:800,
-      }
-    }
-  }
-}
-
-class App extends Component {
-
-  constructor() {
-    super();
-    this.state ={
+ const initialState = {
       input: '',
       imageUrl: '',
       box:{},
@@ -46,11 +24,30 @@ class App extends Component {
         joined: ''
       }
     }
+
+
+const particalsOptions = {
+  particles: {
+    number:{
+      value:100,
+      density:{
+        enable:true,
+        value_area:800,
+      }
+    }
+  }
+}
+
+
+class App extends Component {
+
+  constructor() {
+    super();
+    this.state =initialState;
   }
 
-
-
   calculateFaceLocation = (data) => {
+    console.log(data.outputs[0].data.regions)
     const clarifaiFace = data.outputs[0].data.regions.map(face => {
       return face.region_info.bounding_box;
     })
@@ -59,12 +56,13 @@ class App extends Component {
     const width = Number(image.width);
     const height = Number(image.height);
 
-    const faces = clarifaiFace.map(face => {
+    const faces = clarifaiFace.map((face,i) => {
          return {
             topRow: face.top_row * height,
             leftCol : face.left_col * width,
             rightCol: width - (face.right_col * width),
             bottomRow: height - (face.bottom_row * height),
+            key: i
           }
       })
 
@@ -79,19 +77,28 @@ class App extends Component {
   onButtonSubmit = () => {
     this.setState({error: ''})
     this.setState({imageUrl:this.state.input});
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+      fetch('https://gentle-hollows-68427.herokuapp.com/handleAPICall',{
+            method:'post',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+              input: this.state.input
+            })
+          })
+      .then(response => response.json())
       .then(response => {
         if(response){
-
-          fetch('http://127.0.0.1:4000/image/'+this.state.user.id,{
+          fetch('https://gentle-hollows-68427.herokuapp.com/image/'+this.state.user.id,{
             method:'put',
             headers:{'Content-type':'application/json'},
             body:JSON.stringify({
               id:this.state.user.id
             })
-          }).then(response => response.json())
+          })
+          .then(response => response.json())
           .then(count => this.setState(Object.assign(this.state.user,{entries:count})))
+          .catch(console.log)
         }
+
         this.detectFace(this.calculateFaceLocation(response))
       })
       .catch(err => this.setState({error: 'Face Not Detected! '}))
@@ -105,7 +112,7 @@ class App extends Component {
     if(route === 'home'){
       this.setState({isSignedIn: true})
     }else{
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     }
     this.setState({route: route});
   }

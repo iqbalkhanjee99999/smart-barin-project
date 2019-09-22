@@ -20,7 +20,7 @@ class SignIn extends React.Component{
 	}
 
 	onSubmitSignIn = () => {
-		fetch('http://127.0.0.1:4000/signin',{
+		fetch('https://gentle-hollows-68427.herokuapp.com/signin',{
 			method:'post',
 			headers:{'Content-Type':'application/json'},
 			body:JSON.stringify({
@@ -28,16 +28,15 @@ class SignIn extends React.Component{
 				password:this.state.userPassword
 			})
 		})
-			.then(response => response.json())
-			.then(user => {
-				if(user.id){
-					console.log(user)
-					this.props.loadUser(user)
-					this.props.changeRoute('home')
-				}else{
-					this.setState({error:'Incorrect Username or Password '})
-				}
-			})
+		.then(response => response.json())
+		.then(user => {
+			if(user.id){
+				this.props.loadUser(user)
+				this.props.changeRoute('home')
+			}else{
+				this.setState({error:user})
+			}
+		})
 
 		
 	}

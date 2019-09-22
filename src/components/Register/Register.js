@@ -26,7 +26,7 @@ class Register extends React.Component {
 	}
 
 	onRegister = () => {
-		fetch('http://127.0.0.1:4000/register ',{
+		fetch('https://gentle-hollows-68427.herokuapp.com/register ',{
 			method:'post',
 			headers: {'Content-Type': 'application/json'},
 			body:JSON.stringify({
@@ -37,15 +37,14 @@ class Register extends React.Component {
 		})
 		.then(response => response.json())
 		.then(user => {
-			if(user.name === '' || user.email === '' || user.password === ''){
-				this.setState({error: 'Please fill all input fields'})
+			if(!user.id){
+				this.setState({error: user})
 			}else{
 				this.props.loadUser(user)
 				this.props.changeRoute('home')
 			}
-		});
-
-		
+		})
+		.catch('unaable to register user')
 	}
 
 	render(){
